@@ -1,0 +1,12 @@
+import java.util.*;
+
+public class Main{
+	public static void main(String [] args){
+		int a, b, c, d;
+		Scanner sc = new Scanner(System.in);
+		a = sc.nextInt(); b = sc.nextInt(); c = sc.nextInt(); d = sc.nextInt();
+		if((double) b / a > (double )d / c) System.out.println("TAKAHASHI");
+		else if((double) b / a < (double )d / c) System.out.println("AOKI");
+		else System.out.println("DRAW");
+	}
+}

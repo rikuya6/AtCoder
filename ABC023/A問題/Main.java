@@ -1,0 +1,11 @@
+import java.util.*;
+
+public class Main {
+	public static void main(String[] args){
+		int x, ans = 0;
+		Scanner sc = new Scanner(System.in);
+		x = sc.nextInt();
+		ans +=  x / 10 + (x % 10);
+		System.out.println(ans);
+	}
+}
