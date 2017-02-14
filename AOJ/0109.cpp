@@ -1,120 +1,75 @@
 #include <iostream>
 #include <string>
-#include <stack>
-#include <cctype>
-#include <cmath>
 
 using namespace std;
 
 #define REP(i, j) for(int i = 0; i < j; i++)
 
-string re_poland(string);
-int calc(string);
+typedef pair<int,const char*> parsed;
+
+parsed expr(const char *);
+parsed term(const char *);
+parsed fact(const char *);
 
 int main()
 {
-  int n, ans;
-  string expression, re_poland_ex;
-  stack<string> st;
+  int n;
+  string expression;
   cin >> n;
 
   REP(i, n){
     cin >> expression;
     expression.pop_back(); // "=" を削除
-    re_poland_ex = re_poland(expression);
-    // cout << re_poland_ex << endl;
-    ans = calc(re_poland_ex);
+    int ans = expr(expression.c_str()).first;
     cout << ans << '\n';
   }
   return 0;
 }
 
-string re_poland(string expression)
+parsed expr(const char *p)
 {
-  string re_poland_ex;
-  stack<string> st;
-  string target, period;
-  char digit_ch, digit_ch_after;
-  int size = expression.size();
-  REP(i, size){
-    target = expression[i];
-    digit_ch = expression[i];
-    if(isdigit(digit_ch)){
-      period = expression[i + 1];
-      if(period == "."){
-        i += 2;
-        for(int k = i; k < size; k++, i++){
-          digit_ch_after = expression[k];
-          if(isdigit(digit_ch_after))
-            continue;
-          else
-            break;
-        }
-      }
-      re_poland_ex += digit_ch;
-    }else if(target == "("){
-      st.push(target);
-    }else if(target == ")"){
-      while(true){
-        if(st.top() == "("){
-          st.pop();
-          break;
-        }else{
-          re_poland_ex += st.top();
-          st.pop();
-        }
-      }
-    }else{
-      // 演算子
-      string ope;
-      if(st.size() >= 1){
-        ope = st.top();
-        if(ope == "*" || ope == "/"){
-          re_poland_ex += ope;
-          st.pop();
-        }
-      }
-      st.push(target);
-    }
+  parsed r = term(p); // 最初のtermの返り値
+  // *r.secondは次の文字。次の文字に+又は-が続く間
+  while(*r.second == '+' || *r.second == '-'){
+    char op = *r.second;
+    int tmp = r.first; // tmpに +, -の左側の結果が格納
+    r = term(r.second + 1); // +, -の右側のtermの返り値
+    if(op == '+')
+      r.first = tmp + r.first; // +の場合は加算
+    else
+      r.first = tmp - r.first; // -の場合は減算
   }
-  while(!st.empty()){
-    re_poland_ex += st.top();
-    st.pop();
-  }
-  return re_poland_ex;
+  return r;
 }
 
-int calc(string re_poland_ex)
+parsed term(const char *p)
 {
-  stack<int> st;
-  string target;
-  char digit_ch; // 数値判定用
-  int size = re_poland_ex.size();
-  int ope_a, ope_b;
-  REP(i, size){
-    target = re_poland_ex[i];
-    digit_ch = re_poland_ex[i];
-    if(isdigit(digit_ch)){
-      st.push(stoi(target));
-    }else if(target == "+"){
-      ope_a = st.top(); st.pop();
-      ope_b = st.top(); st.pop();
-      st.push(ope_b + ope_a);
-    }else if(target == "-"){
-      ope_a = st.top(); st.pop();
-      ope_b = st.top(); st.pop();
-      st.push(ope_b - ope_a);
-    }else if(target == "*"){
-      ope_a = st.top(); st.pop();
-      ope_b = st.top(); st.pop();
-      st.push(ope_b * ope_a);
-    }else{
-      ope_a = st.top(); st.pop();
-      ope_b = st.top(); st.pop();
-      st.push((int)(floor(ope_b / ope_a)));
-      // cout << "debug:" << ope_b <<  " " << ope_a << endl;
-      // cout << "debug:" << (int)(floor(ope_b / ope_a)) << endl;
-    }
+  parsed r = fact(p);
+  while(*r.second == '*' || *r.second == '/'){
+    char op = *r.second;
+    int tmp = r.first;
+    r = fact(r.second + 1);
+    if(op == '*')
+      r.first = tmp * r.first;
+    else
+      r.first = tmp / r.first;
   }
-  return st.top();
+  return r;
+}
+
+parsed fact(const char *p)
+{
+  if(isdigit(*p)){ // 数字列
+    int t = *(p++) - '0';
+    while(isdigit(*p)) // 数字列が終わるまで
+      t = t * 10 + *(p++) - '0';
+    return parsed(t, p);
+  }else if(*p == '('){ // 開き括弧の場合
+    parsed r = expr(p + 1);
+    if(*r.second != ')')
+      exit(0); // invalid input
+    return parsed(r.first, r.second + 1);
+  }else{
+    exit(0); // invalid input
+  }
 }
