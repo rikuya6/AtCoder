@@ -2,7 +2,6 @@
 #include <queue>
 #include <algorithm>
 #include <cstring>
-#include <map>
 
 using namespace std;
 #define REP(i, j) for(int i = 0; i < j; i++)
@@ -38,7 +37,7 @@ int solve(const int start)
   int end_str[] = {0, 1, 2, 3, 4, 5, 6, 7};
   int end = encode(end_str);
   queue<int> open, cnt_que;
-  map<int, int> closed;
+  int closed[8*7*6*5*4*3*2];
 
   open.push(start);
   closed[start] = 1;
@@ -80,7 +79,7 @@ int solve(const int start)
       swap(ndata[zeroY * 4 + zeroX], ndata[ny * 4 + nx]);
       nstate = encode(ndata);
       // cout << nstate << endl;
-      if(! closed.count(nstate)){
+      if(closed[nstate] != 1){
         open.push(nstate);
         closed[nstate] = 1;
         // cout << "cnt: " << cnt << endl;
