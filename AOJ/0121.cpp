@@ -32,7 +32,7 @@ void bit_debug(const int e)
   cout << endl;
 }
 
-int closed[20000000];
+short closed[20000000];
 
 int solve(const int start)
 {
@@ -96,16 +96,14 @@ int main()
 {
   ios::sync_with_stdio(false);
 
-  int num, ans;
   int start[8];
   while(true){
     REP(i, 8){
-      if(! (cin >> num))
+      if(! (cin >> start[i]))
         return 0;
-      start[i] = num;
     }
     int e = encode(start);
-    ans = solve(e);
+    int ans = solve(e);
     cout << ans << endl;
   }
   return 0;
