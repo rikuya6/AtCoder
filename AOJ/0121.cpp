@@ -18,7 +18,7 @@ int encode(const int data[])
 
 void decode(const int e, int d[])
 {
-  for(int i = 7; i >= 0; i--)
+  REP(i, 8)
     d[i] = ((e >> (3 * i)) & 7);
   return;
 }
@@ -32,15 +32,15 @@ void bit_debug(const int e)
   cout << endl;
 }
 
-
+int closed[20000000];
 
 int solve(const int start)
 {
+  memset(closed, -1, sizeof(closed));
+
   int end_str[] = {0, 1, 2, 3, 4, 5, 6, 7};
   int end = encode(end_str);
   queue<int> open, cnt_que;
-  int closed[8*7*6*5*4*3*2];
-
   open.push(start);
   closed[start] = 1;
   cnt_que.push(0);
