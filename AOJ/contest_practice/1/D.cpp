@@ -1,3 +1,5 @@
+// WA 全然違う
+
 #include <iostream>
 
 using namespace std;
@@ -6,26 +8,26 @@ using namespace std;
 int main()
 {
   int n;
-  int a;
-  int data[51][31];
-  int m[51] = {0};
-  while(cin >> n, n){
-    REP(i, 51){
-      REP(k, 31){
-        data[i][k] = 0;
+  while(cin >> n, n) {
+    int days[n][31];
+    REP(i, n){
+      int day_num;
+      cin >> day_num;
+      REP(k, day_num)
+        cin >> days[i][k];
+    }
+    int cnt = 0, save = -1;
+    REP(i, 31) {
+      REP(k, n) {
+        if(days[k][0] == i) {
+          cnt++;
+        }
+      }
+      if(cnt == n) {
+        save = i;
+        break;
       }
     }
-
-    REP(i, n){
-      m[i] = -1;
-      cin >> a;
-      REP(k, a){
-        cin >> data[i][a];
-      }
-    }
-
-    REP(i, n){
-      data[i][0];
-    }
+    cout << save << endl;
   }
 }
