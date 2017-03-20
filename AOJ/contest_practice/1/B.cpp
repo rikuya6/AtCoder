@@ -1,4 +1,4 @@
-// WA
+// no. 2001
 
 #include <iostream>
 
@@ -32,8 +32,8 @@ int main()
         max = data[i][0];
     }
 
-    REP(i, max + 1){
-      REP(k, n * 2 + 1){
+    REP(i, 1001){
+      REP(k, 202){
         amida[i][k] = 0;
       }
     }
