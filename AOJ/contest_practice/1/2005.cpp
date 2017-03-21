@@ -35,18 +35,18 @@ int main()
       first--; second--;
       cost[first][second] = in_cost;
     }
-    // REP(i, V){
-    //   REP(k, V)
-    //     cout << cost[i][k] << " ";
-    //   cout << endl;
-    // }
+    REP(i, V){
+      REP(k, V)
+        cout << cost[i][k] << " ";
+      cout << endl;
+    }
     warshall_floyd();
-    // cout << endl;
-    // REP(i, V){
-    //   REP(k, V)
-    //     cout << cost[i][k] << " ";
-    //   cout << endl;
-    // }
+    cout << endl;
+    REP(i, V){
+      REP(k, V)
+        cout << cost[i][k] << " ";
+      cout << endl;
+    }
     int min = INF;
     REP(i, V){
       min = std::min(min, cost[s][i] + cost[i][g1] + cost[i][g2]);
