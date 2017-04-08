@@ -36,7 +36,6 @@ int main()
   while(cin >> W >> H, W) {
     REP(i, 51) {
       REP(k, 51) {
-        flag[i][k] = false;
         tb[i][k] = 0;
         ans_table[i][k] = 0;
       }
@@ -46,15 +45,13 @@ int main()
         cin >> tb[i][k];
     for(int h = 0; h < H; h++) {
       for(int w = 0; w < W; w++) {
-        if(tb[h][w] == 'B' || tb[h][w] == 'W' || ans_table[h][w]) continue;
-        REP(a, 51)
-          REP(b, 51)
-            flag[a][b] = false;
-        flag[h][w] = true;
-        int check = dfs(h, w);
-        REP(l, H)
-          REP(m, W)
-            if(flag[l][m] && tb[l][m] == '.') ans_table[l][m] = check;
+        if(tb[h][w] != 'B' && tb[h][w] != 'W') {
+          REP(a, 51)
+            REP(b, 51)
+              flag[a][b] = false;
+          flag[h][w] = true;
+          ans_table[h][w] = dfs(h, w);
+        }
       }
     }
     int brack_cnt = 0, white_cnt = 0;
