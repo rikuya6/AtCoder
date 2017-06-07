@@ -15,8 +15,18 @@ void draw(int x, int y, int a)
         for(int k = 0; k < x; k++)
           map[i][k] = true;
       break;
+    case 2:
+      for(int i = w; i >= x; i--)
+        for(int k = 0; k < h; k++)
+          map[i][k] = true;
+      break;
+    case 3:
+      for(int i = 0; i < w; i++)
+        for(int k = 0; k < y; k++)
+          map[i][k] = true;
+      break;
     case 4:
-      for(int i = 0; i < y; i++)
+      for(int i = h; i >= y; i--)
         for(int k = 0; k < w; k++)
           map[i][k] = true;
       break;
@@ -32,6 +42,7 @@ int main(){
     int x, y, a;
     cin >> x >> y >> a;
     draw(x, y, a);
+    cout << endl;
     REP(i, h){
       REP(k, w)
         cout << map[i][k];
