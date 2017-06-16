@@ -21,7 +21,7 @@ int dfs() {
   queue.push(make_pair(make_pair(0, 0), make_pair(0, 1)));
   while(!queue.empty()) {
     State cur = queue.top(); queue.pop();
-    int cx = cur.first.second, cy = cur.second.first, cdir = cur.second.second;;
+    int cx = cur.first.second, cy = cur.second.first, cdir = cur.second.second;
     if(cx == w - 1 && cy == h - 1) {
       REP(z, 4) {
         REP(i, h) {
