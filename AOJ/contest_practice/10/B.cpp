@@ -1,4 +1,3 @@
-// WA
 #include <iostream>
 #include <algorithm>
 #include <vector>
@@ -63,13 +62,10 @@ int main()
   int a, l;
   while(cin >> a >> l) {
     if(a == 0 && l == 0) break;
-    if(a == 0) {
-      cout << "0 0 1" << endl;
-      continue;
-    }
     int number[l], max = 0, min = 0;
     vector<pair<int, int> > results;
     results.clear();
+    results.push_back(make_pair(a, 0));
     for(int cnt = 1; cnt <= 20; cnt++) {
       fill(number, number + l, 0);
       set_zero_number(a, number, l);
