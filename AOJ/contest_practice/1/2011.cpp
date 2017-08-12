@@ -1,4 +1,4 @@
-// D問題
+// http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2011
 
 #include <iostream>
 #include <algorithm>

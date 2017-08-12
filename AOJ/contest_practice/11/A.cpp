@@ -1,3 +1,5 @@
+// http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2252
+
 #include <iostream>
 #include <algorithm>
 #include <string>

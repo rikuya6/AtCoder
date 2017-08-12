@@ -1,3 +1,6 @@
+// http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1140&lang=jp
+// WA
+
 #include <iostream>
 #include <algorithm>
 #include <queue>

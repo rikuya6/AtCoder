@@ -1,3 +1,5 @@
+// http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2149
+
 #include <iostream>
 
 using namespace std;

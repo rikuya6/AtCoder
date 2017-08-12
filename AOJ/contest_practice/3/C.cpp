@@ -1,3 +1,5 @@
+// http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1137&lang=jp
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -12,7 +14,7 @@ int main()
   int length;
 
   cin >> n;
-  
+
   REP(i, n){
     string aaa;
     int ans = 0;
@@ -44,7 +46,7 @@ int main()
     }
     //cout << ans << endl;
 
-    
+
     work = ans / 1000;
     if(work){
       if(work != 1){
@@ -80,7 +82,7 @@ int main()
         aaa += 'i';
       }
     }
-    
+
     cout << aaa << endl;
   }
 }

@@ -1,3 +1,5 @@
+// http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2012
+
 #include <iostream>
 using namespace std;
 #define REP(i, n) for(int i = 0; i < (int)(n); i++ )
