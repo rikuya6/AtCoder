@@ -1,4 +1,4 @@
-// WA
+// WA 改行を無視しため、2ヶ月連続になっていない
 #include <iostream>
 #include <algorithm>
 #include <map>
