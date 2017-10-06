@@ -1,3 +1,4 @@
+// 実装途中
 #include <iostream>
 #include <string>
 using namespace std;
