@@ -2,17 +2,19 @@
 using namespace std;
 #define REP(i, n) for(int i = 0; i < (int)(n); i++)
 
-long long number[87];
-
-
+long long memo[87];
 
 long long solve(const long long n)
 {
-  number[0] = 2LL;
-  number[1] = 1LL;
-  for (int i = 2; i <= n ; i++)
-    number[i] = number[i - 2] + number[i - 1];
-  return number[n];
+  if (n == 0)
+    return 2;
+  if (n == 1)
+    return 1;
+  if (n >= 2)
+    if (memo[n] > 0)
+      return memo[n];
+    else
+      return memo[n] = solve(n - 1) + solve(n - 2);
 }
 
 int main()
