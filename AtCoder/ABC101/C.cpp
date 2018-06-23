@@ -8,9 +8,7 @@ using namespace std;
 int solve(vector<int>& a, const int k) {
   int size = a.size();
   int cnt{};
-  if (size == k) return 1;
-  while (size >= 1) {
-    size = size - k + 1;
+  while (size > k + (k - 1) * (cnt - 1)) {
     ++cnt;
   }
   return cnt;
