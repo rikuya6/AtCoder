@@ -1,5 +1,3 @@
-// WA
-
 #include <algorithm>
 #include <iostream>
 #include <string>
@@ -9,34 +7,25 @@ using namespace std;
 #define REP(i, n) FOR(i, 0, n)
 
 bool solve(string& s) {
-  string keyence = "keyence";
-  size_t i = 0, pos = 0;
-  bool check = true;
-  while (i < s.size() && pos < keyence.size()) {
-    if (s[i] != keyence[pos]) {
-      if (!check) return false;
-      check = false;
-      bool l = false;
-      ++i;
-      for (; i < s.size(); ++i) {
-        if (s[i] == keyence[pos]) {
-          l = true;
-          break;
-        }
+  for (size_t i = 0; i <= s.size(); ++i) {
+    for (size_t l = i; l <= s.size(); ++l) {
+      string t;
+      for (size_t k = 0; k < s.size(); ++k) {
+        if (k >= i && k <= l)
+          continue;
+        t += s[k];
       }
-      if (!l)
-        return false;
+      // cout << t << endl;
+      if (t == "keyence") return true;
     }
-    ++i;
-    ++pos;
   }
-  return true;
+  return false;
 }
 
 int main() {
   string s;
   cin >> s;
-  cout << (solve(s) ? "YES": "NO") << endl;
+  cout << (solve(s) ? "YES" : "NO") << endl;
 }
 
 // keyencekeyencekeyence yes
