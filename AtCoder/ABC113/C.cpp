@@ -1,23 +1,30 @@
+// 解説参照
+
 #include <algorithm>
 #include <iomanip>
 #include <iostream>
-#include <string>
 #include <sstream>
+#include <string>
 #include <tuple>
 #include <vector>
 using namespace std;
 #define FOR(i, a, b) for (int i = (a); i < (b); ++i)
 #define REP(i, n) FOR(i, 0, n)
 
-void solve(int n, int m, vector<tuple<int, int, int>>& v) {
-}
+using ll = long long;
+
+int N, M;
+int P[100000], Y[100000];
+vector<int> yd[100001];
 
 int main() {
-  int n, m;
-  cin >> n >> m;
-  REP(i, m) {
-    int p, y;
-    cin >> p >> y;
+  cin >> N >> M;
+  REP(i, M) {
+    cin >> P[i] >> Y[i];
+    yd[P[i]].push_back(Y[i]);
   }
-  solve(n, m, v);
+  REP(i, N)
+    sort(yd[i + 1].begin(), yd[i + 1].end());
+  REP(i, M)
+    printf("%012lld\n", ll(P[i]) * 1000000 + int(lower_bound(yd[P[i]].begin(), yd[P[i]].end(), Y[i]) - yd[P[i]].begin()) + 1);
 }
