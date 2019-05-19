@@ -15,11 +15,9 @@ string solve(string s) {
   if (a <= 12 && a >= 1 && b <= 12 && b >= 1)
     return "AMBIGUOUS";
   if (a >= 1 && b <= 12 && b >= 1)
-    if (b <= 12)
-      return "YYMM";
+    return "YYMM";
   if (a <= 12 && a >= 1 && b >= 1)
-    if (a <= 12)
-      return "MMYY";
+    return "MMYY";
   return "NA";
 }
 
